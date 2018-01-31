@@ -5,7 +5,7 @@
     </div>
 </template>
 <script>
-    import HeaderUi from "./components/header-ui.vue";
+    import HeaderUi from './components/header-ui.vue';
 
     export default {
         components: {

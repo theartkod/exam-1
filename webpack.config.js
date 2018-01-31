@@ -1,15 +1,15 @@
 const { join, resolve } = require('path');
 const { createReadStream } = require('fs');
-
 const webpack = require('webpack');
 
 const HtmlPlugin = require('html-webpack-plugin');
 const HtmlTemplatePlugin = require('html-webpack-template');
 
+require("babel-polyfill");
 module.exports = {
     context: __dirname,
 
-    entry: join( __dirname, 'src/index.js' ),
+    entry: ['babel-polyfill', './src/index.js'],
 
     output: join( __dirname, 'public/bundle.js' ),
 
@@ -30,7 +30,12 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: 'babel-loader',
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['babel-preset-latest']
+                    }
+                }
             }
         ],
     },
